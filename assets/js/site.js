@@ -1,17 +1,10 @@
-/* ==========================================================================
-   Huy Bui — portfolio behaviour
-   Ported from the design-canvas logic class in design/bento-portfolio.dc.html.
-   No framework, no CDN: the markup in index.html is the source of truth and
-   this file only fills the JS-rendered lists and wires the controls.
-   ========================================================================== */
+/* Huy Bui — portfolio behaviour. No framework, no CDN.
+   index.html holds the markup; this file fills the lists and wires the buttons. */
 
 (() => {
   'use strict';
 
-  /* --- config --------------------------------------------------------------
-     These were design-canvas props. Change a value and reload; every layout
-     branch below is still reachable.
-     -------------------------------------------------------------------------- */
+  /* Change a value and reload. Every layout option below still works. */
 
   const CONFIG = {
     theme: 'auto',            // 'auto' (follow OS) | 'light' | 'dark'
@@ -23,43 +16,40 @@
     stackStyle: 'rows'        // 'rows' | 'matrix' | 'type' | 'numbered' | 'chips' | 'marquee'
   };
 
-  /* --- content -------------------------------------------------------------
-     English copy for the labelled bits lives in index.html (the [data-i18n]
-     elements) and is read at startup; DICT.vi holds the translations. The
-     arrays below are rendered by JS in both languages.
-     -------------------------------------------------------------------------- */
+  /* English labels live in index.html on the [data-i18n] elements and are read
+     at startup. DICT.vi holds the Vietnamese. The arrays below cover both. */
 
   const DICT = {
     en: {},
     vi: {
-      'site.kicker': 'Hồ sơ / 2026',
-      'lbl.profile': 'Hồ sơ',
+      'site.kicker': 'Portfolio / 2026',
+      'lbl.profile': 'Giới thiệu',
       'hero.role': 'Kỹ sư phần mềm cấp cao · Trưởng nhóm',
       'hero.loc': 'Bình Thạnh, TP. Hồ Chí Minh — UTC+7',
-      'hero.bio': 'Mười năm xây dựng nền tảng web từ đầu đến cuối — qua thương mại điện tử, y tế và bảo hiểm. Gần đây: trình tạo sản phẩm low-code, điều phối luồng nghiệp vụ, và phát triển cùng AI.',
+      'hero.bio': 'Mười năm làm sản phẩm web, từ backend tới frontend — đi qua thương mại điện tử, y tế và bảo hiểm. Gần đây tập trung vào builder low-code, điều phối workflow và lập trình cùng AI.',
       'lbl.stack': 'Công nghệ',
       'lbl.work': 'Dự án',
       'f.all': 'Tất cả', 'f.product': 'Sản phẩm', 'f.platform': 'Nền tảng', 'f.consulting': 'Tư vấn',
-      'work.open': 'Xem trang',
+      'work.open': 'Xem website',
       'lbl.exp': 'Kinh nghiệm',
       'exp.span': '2015 — 2026',
       'lbl.edu': 'Học vấn & Giải thưởng',
       'edu.all': 'Chứng chỉ',
       'lbl.contact': 'Liên hệ',
       'contact.cv': 'CV / PDF',
-      'cv.title': 'Hồ sơ năng lực',
+      'cv.title': 'CV',
       'cv.download': 'Tải về',
-      'foot.colophon': 'Chữ IBM Plex · Làm với',
+      'foot.colophon': 'Chữ IBM Plex · Làm bằng',
       'foot.right': '© 2026'
     }
   };
 
-  /* Strings that never appear in the markup, so they can't come from [data-i18n]. */
+  /* Strings not in the markup, so they can't come from [data-i18n]. */
   const UI = {
     en: { current: 'Current', expOn: 'Compact', expOff: 'Full', light: 'Light', dark: 'Dark',
           toLight: 'Switch to light theme', toDark: 'Switch to dark theme', toLang: 'Chuyển sang tiếng Việt' },
     vi: { current: 'Hiện tại', expOn: 'Rút gọn', expOff: 'Đầy đủ', light: 'Sáng', dark: 'Tối',
-          toLight: 'Chuyển sang giao diện sáng', toDark: 'Chuyển sang giao diện tối', toLang: 'Switch to English' }
+          toLight: 'Chuyển sang chế độ sáng', toDark: 'Chuyển sang chế độ tối', toLang: 'Switch to English' }
   };
 
   /* cat: 'product' | 'platform' | 'consulting'   ·   url: '' hides the link button */
@@ -67,48 +57,48 @@
     { y:'2025', cat:'consulting', n:'Hanoi Convention 2025', url:'https://hanoiconvention.org',
       stack:'WordPress · Next.js · NestJS · K8s',
       d:{ en:'CMS and online registration for the UN Convention against Cybercrime signing ceremony in Hanoi. Built with a government agency, from requirements through to on-premise deployment.',
-          vi:'Hệ quản trị nội dung và đăng ký trực tuyến cho lễ ký Công ước Liên Hợp Quốc về tội phạm mạng tại Hà Nội. Làm cùng cơ quan nhà nước, từ khảo sát yêu cầu đến triển khai on-premise.' },
+          vi:'CMS và cổng đăng ký trực tuyến cho lễ ký Công ước Liên Hợp Quốc về tội phạm mạng tại Hà Nội. Phối hợp cùng cơ quan nhà nước từ lúc lấy yêu cầu đến khi triển khai on-premise.' },
       m:[['1,500+',{en:'Registrants',vi:'Đại biểu'}],['4 mo',{en:'Delivery',vi:'Thời gian'}]] },
 
     { y:'2025', cat:'platform', n:'Kasha Booking API', url:'https://kasha.io',
       stack:'NestJS · gRPC · RabbitMQ · Postgres',
       d:{ en:'Booking module backend, architected from inception through design and implementation to MVP launch, with gRPC and RabbitMQ carrying traffic between services.',
-          vi:'Backend module đặt chỗ, thiết kế kiến trúc từ đầu qua triển khai đến khi ra MVP, dùng gRPC và RabbitMQ cho giao tiếp giữa các service.' },
-      m:[['MVP',{en:'Shipped',vi:'Đã phát hành'}],['10 mo',{en:'Engagement',vi:'Thời gian'}]] },
+          vi:'Backend cho module đặt chỗ: tự dựng kiến trúc từ đầu, làm tới khi ra MVP. Các service giao tiếp với nhau qua gRPC và RabbitMQ.' },
+      m:[['MVP',{en:'Shipped',vi:'Đã ra mắt'}],['10 mo',{en:'Engagement',vi:'Thời gian'}]] },
 
     { y:'2024', cat:'platform', n:'Product Builder', url:'https://covergo.com',
       stack:'Vue 3 · NestJS · PostgreSQL · Keycloak',
       d:{ en:'Low-code builder that lets insurers configure health, life, property and casualty products with minimal code — the core of the distribution platform.',
-          vi:'Trình tạo low-code cho phép công ty bảo hiểm cấu hình sản phẩm sức khoẻ, nhân thọ, tài sản và phi nhân thọ với rất ít code — phần cốt lõi của nền tảng phân phối.' },
+          vi:'Builder low-code giúp công ty bảo hiểm tự cấu hình sản phẩm sức khoẻ, nhân thọ, tài sản và trách nhiệm mà gần như không cần viết code — phần cốt lõi của nền tảng phân phối.' },
       m:[['1 wk',{en:'Time to market',vi:'Thời gian ra mắt'}],['4',{en:'Insurance lines',vi:'Dòng sản phẩm'}]] },
 
     { y:'2024', cat:'product', n:'Breezing.In', url:'https://breezing.in',
       stack:'Nuxt 3 · NestJS · MongoDB · AWS',
       d:{ en:'All-in-one event and booking platform, built as founding engineer from MVP through launch. Its offline check-in ran Saigon Summit 2024 with Tech in Asia.',
-          vi:'Nền tảng quản lý sự kiện và đặt chỗ all-in-one, xây từ MVP đến ra mắt với vai trò founding engineer. Giải pháp check-in offline được dùng cho Saigon Summit 2024 cùng Tech in Asia.' },
-      m:[['1,000+',{en:'Users',vi:'Người dùng'}],['3 mo',{en:'To launch',vi:'Tới ra mắt'}]] },
+          vi:'Nền tảng quản lý sự kiện và đặt chỗ all-in-one, xây từ MVP tới lúc ra mắt với vai trò founding engineer. Tính năng check-in offline được dùng cho Saigon Summit 2024 cùng Tech in Asia.' },
+      m:[['1,000+',{en:'Users',vi:'Người dùng'}],['3 mo',{en:'To launch',vi:'Đến khi ra mắt'}]] },
 
     { y:'2023', cat:'product', n:'Business Connect', url:'https://nic.gov.vn',
       stack:'Nuxt 3 · NestJS · MongoDB · AWS',
       d:{ en:'Business matchmaking platform for Vietnam International Innovation Expo 2023, owned end to end with a team of seven.',
-          vi:'Nền tảng kết nối doanh nghiệp cho Triển lãm Quốc tế Đổi mới sáng tạo Việt Nam 2023, phụ trách toàn bộ cùng đội bảy người.' },
+          vi:'Nền tảng kết nối doanh nghiệp cho Triển lãm Quốc tế Đổi mới sáng tạo Việt Nam 2023. Phụ trách trọn gói cùng đội bảy người.' },
       m:[['15,000+',{en:'Expo visitors',vi:'Khách tham dự'}],['7',{en:'Engineers',vi:'Kỹ sư'}]] },
 
     { y:'2019', cat:'consulting', n:'Dental AI Imaging', url:'',
       stack:'PHP · Vue.js · Laravel · AWS Serverless',
       d:{ en:'AI-powered imaging tool and a microservices dental platform helping clinics diagnose more accurately — architecture, pre-sales, and ten developers across two engagements.',
-          vi:'Công cụ chẩn đoán hình ảnh dùng AI và nền tảng nha khoa kiến trúc microservices giúp phòng khám chẩn đoán chính xác hơn — kiến trúc, pre-sales và mười lập trình viên trên hai dự án.' },
+          vi:'Công cụ xử lý ảnh bằng AI và nền tảng nha khoa dựng theo microservices, giúp phòng khám chẩn đoán chính xác hơn. Đảm nhận kiến trúc, pre-sales và điều phối mười lập trình viên qua hai dự án.' },
       m:[['$1M',{en:'Contract won',vi:'Hợp đồng'}],['10',{en:'Developers',vi:'Lập trình viên'}]] }
   ];
 
   const STACK = [
     [{en:'Languages',vi:'Ngôn ngữ'}, ['TypeScript','JavaScript','PHP','Java']],
-    [{en:'Frontend',vi:'Giao diện'}, ['Vue 3','Nuxt','React','Next.js','TailwindCSS','Vuetify','PrimeVue']],
-    [{en:'Backend',vi:'Máy chủ'}, ['Node.js','NestJS','Express','Laravel','Spring MVC']],
+    [{en:'Frontend',vi:'Frontend'}, ['Vue 3','Nuxt','React','Next.js','TailwindCSS','Vuetify','PrimeVue']],
+    [{en:'Backend',vi:'Backend'}, ['Node.js','NestJS','Express','Laravel','Spring MVC']],
     [{en:'Data',vi:'Dữ liệu'}, ['PostgreSQL','MySQL','MongoDB','Redis','Oracle']],
     [{en:'Cloud & DevOps',vi:'Cloud & DevOps'}, ['AWS','Docker','Kubernetes','GitHub Actions','Grafana','OpenTelemetry']],
     [{en:'Integration',vi:'Tích hợp'}, ['REST','GraphQL','gRPC','RabbitMQ','Temporal']],
-    [{en:'AI & Testing',vi:'AI & Kiểm thử'}, ['Claude Code','Cursor','Copilot','Jest','Playwright']]
+    [{en:'AI & Testing',vi:'AI & Testing'}, ['Claude Code','Cursor','Copilot','Jest','Playwright']]
   ];
 
   /* Education and awards. d: year(s), t: title, m: short tag. */
@@ -119,11 +109,11 @@
     { d:'2023', m:{en:'Award',vi:'Giải'},
       t:{en:'Best Dissertation Award — remote-work productivity',
          vi:'Giải Luận văn xuất sắc — năng suất làm việc từ xa'} },
-    { d:'2021—23', m:{en:'MBA',vi:'MBA'},
-      t:{en:'MBA — Université Paris 1 Panthéon-Sorbonne',
-         vi:'Thạc sĩ QTKD — Université Paris 1 Panthéon-Sorbonne'} },
-    { d:'2011—15', m:{en:'BEng',vi:'BEng'},
-      t:{en:'BEng Information Systems — FPT University',
+    { d:'2021—23', m:{en:'Master',vi:'Thạc sĩ'},
+      t:{en:'Master of Business Administration — Université Paris 1 Panthéon-Sorbonne',
+         vi:'Thạc sĩ Quản trị Kinh doanh — Université Paris 1 Panthéon-Sorbonne'} },
+    { d:'2011—15', m:{en:'Bachelor',vi:'Cử nhân'},
+      t:{en:'Bachelor of Engineering, Information Systems — FPT University',
          vi:'Cử nhân Hệ thống thông tin — Đại học FPT'} }
   ];
 
@@ -131,16 +121,16 @@
     { p:'2024 — ', pn:{en:'now',vi:'nay'}, r:{en:'Senior Software Engineer / Squad Lead',vi:'Kỹ sư phần mềm cấp cao / Trưởng nhóm'}, c:'CoverGo',
       loc:{en:'Insurance',vi:'Bảo hiểm'}, s:'Vue 3 · NestJS · PostgreSQL · AWS · Temporal · Keycloak',
       d:{ en:'Lead and build the low-code product builder that lets insurers configure health, life, property and casualty products — a core part of the distribution platform.',
-          vi:'Dẫn dắt và xây dựng trình tạo sản phẩm low-code giúp công ty bảo hiểm cấu hình sản phẩm sức khoẻ, nhân thọ, tài sản và phi nhân thọ — phần cốt lõi của nền tảng phân phối.' },
+          vi:'Dẫn dắt và trực tiếp xây builder low-code, giúp công ty bảo hiểm tự cấu hình sản phẩm sức khoẻ, nhân thọ, tài sản và trách nhiệm — phần cốt lõi của nền tảng phân phối.' },
       b:[ { en:'Cut time-to-market for a new insurance product from a month to a week.',
             vi:'Giảm thời gian đưa sản phẩm bảo hiểm mới ra thị trường từ một tháng xuống một tuần.' },
           { en:'Delivered data anonymisation and deletion modules — configuration, scheduling, reporting, UI — for regulatory compliance and tenant-specific data policy.',
-            vi:'Xây các module ẩn danh và xoá dữ liệu — cấu hình, lên lịch, báo cáo, giao diện — phục vụ tuân thủ quy định và chính sách dữ liệu riêng của từng khách hàng.' },
+            vi:'Xây module ẩn danh hoá và xoá dữ liệu — cấu hình, lên lịch, báo cáo, UI — phục vụ tuân thủ quy định và chính sách dữ liệu riêng của từng khách hàng.' },
           { en:'Designed the workflow wrapper around Temporal so customer journeys and background processing compose without bespoke plumbing.',
-            vi:'Thiết kế module bao bọc tích hợp Temporal để hành trình khách hàng và xử lý nền ghép được với nhau mà không phải dựng lại từ đầu.' },
+            vi:'Thiết kế lớp wrapper cho Temporal, để các luồng nghiệp vụ phức tạp — hành trình khách hàng, job chạy nền — ghép lại được mà không phải dựng lại từ đầu mỗi lần.' },
           { en:'Built customer and broker portal demos with solution design for three prospective clients; used Cursor with Claude models to accelerate implementation by 40%.',
-            vi:'Xây demo cổng khách hàng và đại lý kèm thiết kế giải pháp cho ba khách hàng tiềm năng; dùng Cursor với mô hình Claude để tăng tốc triển khai 40%.' } ],
-      m:[['1 wk',{en:'Time to market',vi:'Thời gian ra mắt'}],['40%',{en:'Faster delivery',vi:'Nhanh hơn'}],['2024',{en:'Innovator award',vi:'Giải Innovator'}]] },
+            vi:'Xây demo cổng khách hàng và cổng đại lý kèm thiết kế giải pháp cho ba khách hàng tiềm năng; dùng Cursor với các model Claude để tăng tốc triển khai 40%.' } ],
+      m:[['1 wk',{en:'Time to market',vi:'Thời gian ra mắt'}],['40%',{en:'Faster delivery',vi:'Tăng tốc'}],['2024',{en:'Innovator award',vi:'Giải Innovator'}]] },
 
     { p:'2023', pn:{en:'',vi:''}, r:{en:'Technical Lead',vi:'Trưởng nhóm kỹ thuật'}, c:'National Innovation Center',
       loc:{en:'Government',vi:'Khu vực công'}, s:'Nuxt 3 · NestJS · MongoDB · WordPress · AWS · Firebase',
@@ -157,11 +147,11 @@
     { p:'2021 — 2023', pn:{en:'',vi:''}, r:{en:'Senior Software Engineer',vi:'Kỹ sư phần mềm cấp cao'}, c:'Pangara AB',
       loc:{en:'Platform / CMS',vi:'Nền tảng / CMS'}, s:'Vue.js · Node.js · Directus · Laravel · MySQL',
       d:{ en:'Built and customised a platform on the Directus headless CMS, and the extensions that made it usable by people who do not write code.',
-          vi:'Xây và tuỳ biến nền tảng dựa trên headless CMS Directus, cùng các extension giúp người không viết code vẫn dùng được.' },
+          vi:'Xây và tuỳ biến nền tảng trên headless CMS Directus, kèm các extension để người không biết code vẫn dùng được.' },
       b:[ { en:'Cut project development time from two weeks to three days.',
             vi:'Giảm thời gian phát triển dự án từ hai tuần xuống ba ngày.' },
           { en:'Created custom extensions letting non-technical users build complex workflows and data management themselves.',
-            vi:'Tạo các extension tuỳ biến để người không chuyên tự dựng luồng làm việc phức tạp và quản lý dữ liệu.' } ],
+            vi:'Viết extension tuỳ biến để người không chuyên tự dựng workflow phức tạp và tự quản lý dữ liệu.' } ],
       m:[['3 days',{en:'Project setup',vi:'Khởi tạo dự án'}]] },
 
     { p:'2020 — 2021', pn:{en:'',vi:''}, r:{en:'Team Leader',vi:'Trưởng nhóm'}, c:'ICD Vietnam',
@@ -176,10 +166,10 @@
             vi:'Tự động hoá pipeline triển khai, giảm thời gian phát hành từ bốn giờ xuống ba mươi phút.' } ],
       m:[['32M+',{en:'Records',vi:'Bản ghi'}],['1 hr',{en:'Export run',vi:'Xuất dữ liệu'}],['5',{en:'Engineers',vi:'Kỹ sư'}]] },
 
-    { p:'2018 — 2020', pn:{en:'',vi:''}, r:{en:'Solution Architect & Pre-sale',vi:'Kiến trúc giải pháp & Pre-sale'}, c:'FPT Software',
+    { p:'2018 — 2020', pn:{en:'',vi:''}, r:{en:'Solution Architect & Pre-sale',vi:'Solution Architect & Pre-sales'}, c:'FPT Software',
       loc:{en:'Healthcare',vi:'Y tế'}, s:'PHP CodeIgniter · Vue.js · Laravel · Node.js · AWS Serverless · Swift',
       d:{ en:'Architected healthcare products and sold them: an AI-powered imaging tool and a microservices dental platform, across ten developers and two major engagements.',
-          vi:'Thiết kế kiến trúc và bán các sản phẩm y tế: công cụ chẩn đoán hình ảnh dùng AI và nền tảng nha khoa microservices, với mười lập trình viên trên hai dự án lớn.' },
+          vi:'Vừa thiết kế kiến trúc vừa làm pre-sales cho các sản phẩm y tế: công cụ xử lý ảnh bằng AI và nền tảng nha khoa microservices, cùng mười lập trình viên qua hai dự án lớn.' },
       b:[ { en:'Secured a $1M contract with the top Korean dental company, and a $1M PHR project from a top-two medical equipment maker after on-site consultation in Japan.',
             vi:'Chốt hợp đồng 1 triệu USD với công ty nha khoa hàng đầu Hàn Quốc, và dự án PHR 1 triệu USD từ nhà sản xuất thiết bị y tế top 2 sau khi tư vấn trực tiếp tại Nhật.' },
           { en:'Led four proofs of concept for Medical IT Expo Japan: a PHR app, an EMR platform, blockchain medical records and an AR mobile game.',
@@ -191,7 +181,7 @@
     { p:'2016 — 2018', pn:{en:'',vi:''}, r:{en:'Senior Software Engineer',vi:'Kỹ sư phần mềm cấp cao'}, c:'NTT DATA',
       loc:{en:'Healthcare',vi:'Y tế'}, s:'Java · Spring MVC · Oracle · Terasoluna',
       d:{ en:'Built clinic search and integrated maps for the icashica.com dental marketplace, and moved the database underneath it.',
-          vi:'Xây tính năng tìm phòng khám và tích hợp bản đồ cho sàn nha khoa icashica.com, và chuyển đổi cơ sở dữ liệu phía dưới.' },
+          vi:'Xây tính năng tìm phòng khám và tích hợp bản đồ cho sàn nha khoa icashica.com, đồng thời chuyển đổi cơ sở dữ liệu bên dưới.' },
       b:[ { en:'Led the migration from MS SQL to Oracle, taking query time from ten seconds to one.',
             vi:'Dẫn dắt việc chuyển từ MS SQL sang Oracle, giảm thời gian truy vấn từ mười giây xuống một giây.' },
           { en:'Mentored junior developers and ran knowledge-transfer sessions for the team.',
@@ -226,6 +216,22 @@
 
   const ui = () => UI[state.lang === 'vi' ? 'vi' : 'en'];
 
+  /* Language and theme survive a reload. The inline script in <head> reads the
+     same key. try/catch because localStorage throws in private mode. */
+
+  const PREFS_KEY = 'hb.prefs';
+
+  const readPrefs = () => {
+    try { return JSON.parse(localStorage.getItem(PREFS_KEY)) || {}; }
+    catch (e) { return {}; }
+  };
+
+  const savePrefs = () => {
+    try {
+      localStorage.setItem(PREFS_KEY, JSON.stringify({ lang: state.lang, theme: state.theme }));
+    } catch (e) { /* private mode, quota — not worth failing over */ }
+  };
+
   const app = {
 
     /* --- lifecycle -------------------------------------------------------- */
@@ -236,8 +242,14 @@
       });
       DICT.en = state.en;
 
-      state.lang = CONFIG.lang === 'vi' ? 'vi' : 'en';
-      state.theme = (CONFIG.theme === 'light' || CONFIG.theme === 'dark') ? CONFIG.theme : 'auto';
+      // A saved choice wins; CONFIG is only the first-visit default.
+      const saved = readPrefs();
+      state.lang = (saved.lang === 'vi' || saved.lang === 'en')
+        ? saved.lang
+        : (CONFIG.lang === 'vi' ? 'vi' : 'en');
+      state.theme = ['light', 'dark', 'auto'].includes(saved.theme)
+        ? saved.theme
+        : ((CONFIG.theme === 'light' || CONFIG.theme === 'dark') ? CONFIG.theme : 'auto');
       state.cat = 'all';
       state.sel = 0;
       state.expAll = app.isCoarse();
@@ -260,6 +272,7 @@
       on('[data-theme-btn]', 'click', () => {
         state.theme = app.resolvedTheme() === 'dark' ? 'light' : 'dark';
         app.applyTheme();
+        savePrefs();
       });
       on('[data-exp-toggle]', 'click', () => app.toggleExpAll());
       on('[data-cv-open]', 'click', (e) => { e.preventDefault(); app.openCv(e.currentTarget); });
@@ -274,7 +287,7 @@
         if (!ev.target.closest('[data-cv-panel]')) app.closeCv();
       });
 
-      // Keep the theme dot and cursor honest when the OS flips while on 'auto'.
+      // Repaint if the OS theme flips while we're on 'auto'.
       mqDark.addEventListener('change', () => { if (state.theme === 'auto') app.applyTheme(); });
     },
 
@@ -349,8 +362,7 @@
         inner.style.padding = on ? '11px 24px' : '11px 16px';
       };
 
-      // One rAF-coalesced tick per frame instead of the canvas build's endless
-      // requestAnimationFrame poll.
+      // One tick per frame, instead of polling forever with requestAnimationFrame.
       let queued = false;
       const tick = () => { queued = false; syncSticky(); syncNav(); };
       const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(tick); } };
@@ -369,8 +381,7 @@
 
     applyTheme() {
       const html = document.documentElement;
-      // On 'auto' leave data-theme off so the stylesheet's prefers-color-scheme
-      // block drives the palette and OS changes are followed live.
+      // On 'auto', leave data-theme off and let the CSS media query decide.
       if (state.theme === 'auto') html.removeAttribute('data-theme');
       else html.setAttribute('data-theme', state.theme);
 
@@ -410,7 +421,7 @@
       document.documentElement.setAttribute('lang', state.lang);
     },
 
-    setLang(l) { state.lang = l; app.applyLang(); app.applyTheme(); },
+    setLang(l) { state.lang = l; app.applyLang(); app.applyTheme(); savePrefs(); },
 
     /* Rebuilds the accent-tinted pointer cursor for the live --accent value. */
     syncCursor() {
@@ -977,10 +988,8 @@
 
     /* --- CV --------------------------------------------------------------- */
 
-    /* The résumé is a real file at assets/huy-bui-cv.pdf. Both controls in the
-       markup are plain links to it, so they work with JS off; this only adds the
-       in-page preview. The iframe src is taken from the opener's href, so the
-       path lives in one place — the markup. */
+    /* The CV is a real file. Both controls are plain links to it, so they work
+       with JS off; this only adds the preview. The path comes from the link. */
     openCv(opener) {
       const modal = root.querySelector('[data-cv-modal]');
       const href = (opener && opener.getAttribute('href'))
@@ -989,8 +998,7 @@
       if (frame.getAttribute('src') !== href) frame.setAttribute('src', href);
       modal.style.display = 'flex';
       modal.setAttribute('aria-hidden', 'false');
-      // Prefer the element that opened it; activeElement is <body> on browsers
-      // that don't focus a control on click.
+      // activeElement can be <body>, so take the opener from the event.
       state.cvOpener = opener || root.querySelector('[data-cv-open]');
       const close = modal.querySelector('[data-cv-close]');
       if (close) close.focus();

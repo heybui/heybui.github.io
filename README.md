@@ -45,7 +45,11 @@ It's all in `assets/js/site.js`:
 - `DICT.vi` — Vietnamese for the labels. The English lives in `index.html`, on the
   `data-i18n` elements
 - `CONFIG` — theme, language, and alternative layouts for the nav, experience and
-  stack panels
+  stack panels. These are **first-visit defaults only**: once a visitor uses the
+  language or theme button, their choice is saved in `localStorage` under
+  `hb.prefs` and wins on every later visit. A small inline script in the `<head>`
+  of both HTML files applies the saved theme before first paint, so a saved dark
+  theme doesn't flash light
 
 Leave a project's `url` empty to hide its link button.
 

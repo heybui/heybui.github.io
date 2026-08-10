@@ -22,6 +22,14 @@
 <meta property="og:image:alt" content="Huy Bui — senior software engineer, Ho Chi Minh City.">
 <meta name="twitter:card" content="summary_large_image">
 
+<script>
+// Apply the saved theme before first paint, or a saved dark theme flashes light.
+try {
+  var t = JSON.parse(localStorage.getItem('hb.prefs') || '{}').theme;
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+} catch (e) {}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap">
@@ -48,8 +56,8 @@
       <a href="#contact" class="hv-accent" style="color:var(--muted); padding-bottom:3px; border-bottom:2px solid transparent; transition:color .3s cubic-bezier(.33,.02,.24,1), border-color .3s cubic-bezier(.33,.02,.24,1)" data-i18n="lbl.contact">Contact</a>
     </nav>
       <div style="display:flex; align-items:center; gap:8px">
-      <button type="button" data-lang-btn="" class="hv-border" title="Language" aria-label="Switch language" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:36px; height:36px; display:flex; align-items:center; justify-content:center; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.06em; color:var(--fg); transition:border-color .32s cubic-bezier(.33,.02,.24,1)"><span data-lang-label="">EN</span></button>
-      <button type="button" data-theme-btn="" class="hv-border" title="Theme" aria-label="Switch theme" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:36px; height:36px; display:flex; align-items:center; justify-content:center; transition:border-color .32s cubic-bezier(.33,.02,.24,1)"><span data-theme-mark="" aria-hidden="true" style="width:12px; height:12px; flex:none; border-radius:50%; border:1px solid var(--fg); box-sizing:border-box"></span><span data-theme-label="" style="display:none"></span></button>
+      <button type="button" data-lang-btn="" class="hv-fill" title="Language" aria-label="Switch language" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:36px; height:36px; display:flex; align-items:center; justify-content:center; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.06em; color:var(--fg); transition:border-color .32s cubic-bezier(.33,.02,.24,1)"><span data-lang-label="">EN</span></button>
+      <button type="button" data-theme-btn="" class="hv-fill" title="Theme" aria-label="Switch theme" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:36px; height:36px; display:flex; align-items:center; justify-content:center; color:var(--fg); transition:border-color .32s cubic-bezier(.33,.02,.24,1)"><span data-theme-mark="" aria-hidden="true" style="width:12px; height:12px; flex:none; border-radius:50%; border:1px solid var(--fg); box-sizing:border-box"></span><span data-theme-label="" style="display:none"></span></button>
       </div>
     </div>
   </div>
@@ -82,7 +90,7 @@
           <h2 id="h-edu" style="font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--muted)" data-i18n="lbl.edu">Education &amp; Awards</h2>
           <span data-edu-count="" style="font:400 11.5px/1 'IBM Plex Mono',ui-monospace,monospace; color:var(--accent)">04</span>
         </div>
-        <a href="https://drive.google.com/drive/folders/1SgObAcAau8a_iQu7QBE_W_jUMXvArZZJ" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)"><span data-i18n="edu.all">Certificates</span><span aria-hidden="true" style="color:var(--accent)">↗</span></a>
+        <a href="https://drive.google.com/drive/folders/1SgObAcAau8a_iQu7QBE_W_jUMXvArZZJ" target="_blank" rel="noopener" class="hv-fill" style="padding:6px 8px; margin:-6px -8px; border-radius:2px; display:flex; align-items:center; gap:8px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)"><span data-i18n="edu.all">Certificates</span><span aria-hidden="true" style="color:var(--accent)">↗</span></a>
       </div>
       <div data-edu-list="" style="flex:1; min-height:0; overflow-y:auto"></div>
     </section>
@@ -103,10 +111,10 @@
           <span data-count="" style="font:400 11.5px/1 'IBM Plex Mono',ui-monospace,monospace; color:var(--accent)">06</span>
         </div>
         <div role="group" aria-label="Filter projects" style="display:flex; gap:6px; flex-wrap:wrap">
-          <button type="button" data-filter="all" aria-pressed="true" style="appearance:none;  border:1px solid var(--line); border-radius:2px; background:transparent; padding:6px 10px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)" data-i18n="f.all">All</button>
-          <button type="button" data-filter="product" aria-pressed="false" style="appearance:none;  border:1px solid var(--line); border-radius:2px; background:transparent; padding:6px 10px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)" data-i18n="f.product">Product</button>
-          <button type="button" data-filter="platform" aria-pressed="false" style="appearance:none;  border:1px solid var(--line); border-radius:2px; background:transparent; padding:6px 10px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)" data-i18n="f.platform">Platform</button>
-          <button type="button" data-filter="consulting" aria-pressed="false" style="appearance:none;  border:1px solid var(--line); border-radius:2px; background:transparent; padding:6px 10px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)" data-i18n="f.consulting">Consulting</button>
+          <button type="button" class="hv-fill" data-filter="all" aria-pressed="true" style="appearance:none;  border:1px solid var(--line); border-radius:2px; background:transparent; padding:6px 10px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)" data-i18n="f.all">All</button>
+          <button type="button" class="hv-fill" data-filter="product" aria-pressed="false" style="appearance:none;  border:1px solid var(--line); border-radius:2px; background:transparent; padding:6px 10px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)" data-i18n="f.product">Product</button>
+          <button type="button" class="hv-fill" data-filter="platform" aria-pressed="false" style="appearance:none;  border:1px solid var(--line); border-radius:2px; background:transparent; padding:6px 10px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)" data-i18n="f.platform">Platform</button>
+          <button type="button" class="hv-fill" data-filter="consulting" aria-pressed="false" style="appearance:none;  border:1px solid var(--line); border-radius:2px; background:transparent; padding:6px 10px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)" data-i18n="f.consulting">Consulting</button>
         </div>
       </div>
       <div data-work-split="" style="flex:1; min-height:0; display:grid; grid-template-columns:minmax(240px,0.85fr) 1.15fr">
@@ -122,7 +130,7 @@
           <div data-d-metrics="" style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:14px 0"></div>
           <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:auto; flex-wrap:wrap">
             <div data-d-stack="" style="font:400 12px/1.6 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)">WordPress · Next.js · NestJS · K8s</div>
-            <a data-d-link="" href="https://hanoiconvention.org" target="_blank" rel="noopener" class="hv-border" style="display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:2px; padding:9px 13px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:border-color .32s cubic-bezier(.33,.02,.24,1)"><span data-i18n="work.open">Visit site</span><span aria-hidden="true" style="color:var(--accent)">↗</span></a>
+            <a data-d-link="" href="https://hanoiconvention.org" target="_blank" rel="noopener" class="hv-fill" style="display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:2px; padding:9px 13px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:border-color .32s cubic-bezier(.33,.02,.24,1)"><span data-i18n="work.open">Visit site</span><span aria-hidden="true" style="color:var(--accent)">↗</span></a>
           </div>
         </div>
       </div>
@@ -134,7 +142,7 @@
           <h2 id="h-exp" style="font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--muted)" data-i18n="lbl.exp">Experience</h2>
           <span style="font:400 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; color:var(--accent)" data-i18n="exp.span">2015 — 2026</span>
         </div>
-        <button type="button" data-exp-toggle="" class="hv-fg" aria-expanded="false" style="appearance:none;  border:0; background:transparent; padding:0; display:flex; align-items:center; gap:8px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); transition:color .32s cubic-bezier(.33,.02,.24,1)"><span data-exp-toggle-label="">Full</span><span data-exp-toggle-arrow="" aria-hidden="true" style="color:var(--accent)">↓</span></button>
+        <button type="button" data-exp-toggle="" class="hv-fill" aria-expanded="false" style="appearance:none;  border:0; background:transparent; padding:6px 8px; margin:-6px -8px; border-radius:2px; display:flex; align-items:center; gap:8px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); transition:color .32s cubic-bezier(.33,.02,.24,1)"><span data-exp-toggle-label="">Full</span><span data-exp-toggle-arrow="" aria-hidden="true" style="color:var(--accent)">↓</span></button>
       </div>
       <div data-exp-body="" style="flex:1; min-height:0; display:flex; overflow:hidden"></div>
     </section>
@@ -145,10 +153,10 @@
         <a data-mail="" href="mailto:duchuy.bui2108@gmail.com" style="font-family:'IBM Plex Sans',system-ui,sans-serif; font-weight:700; font-size:27px; letter-spacing:-0.02em; word-break:break-all">duchuy.bui2108@gmail.com</a>
       </div>
       <div style="display:flex; gap:8px; flex-wrap:wrap">
-        <a href="https://github.com/heybui" target="_blank" rel="noopener" class="hv-border" style="border:1px solid var(--line); border-radius:2px; padding:9px 13px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:border-color .32s cubic-bezier(.33,.02,.24,1)">GitHub</a>
-        <a href="https://linkedin.com/in/heybui" target="_blank" rel="noopener" class="hv-border" style="border:1px solid var(--line); border-radius:2px; padding:9px 13px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:border-color .32s cubic-bezier(.33,.02,.24,1)">LinkedIn</a>
-        <!-- A real link, so it still works with JS off; site.js intercepts it to open the preview. -->
-        <a data-cv-open="" href="/assets/huy-bui-cv.pdf" target="_blank" rel="noopener" class="hv-border" style="border:1px solid var(--line); border-radius:2px; padding:9px 13px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:border-color .32s cubic-bezier(.33,.02,.24,1)" data-i18n="contact.cv">CV / PDF</a>
+        <a href="https://github.com/heybui" target="_blank" rel="noopener" class="hv-fill" style="border:1px solid var(--line); border-radius:2px; padding:9px 13px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:border-color .32s cubic-bezier(.33,.02,.24,1)">GitHub</a>
+        <a href="https://linkedin.com/in/heybui" target="_blank" rel="noopener" class="hv-fill" style="border:1px solid var(--line); border-radius:2px; padding:9px 13px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:border-color .32s cubic-bezier(.33,.02,.24,1)">LinkedIn</a>
+        <!-- A real link, so it works with JS off. site.js opens the preview instead. -->
+        <a data-cv-open="" href="/assets/huy-bui-cv.pdf" target="_blank" rel="noopener" class="hv-fill" style="border:1px solid var(--line); border-radius:2px; padding:9px 13px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:border-color .32s cubic-bezier(.33,.02,.24,1)" data-i18n="contact.cv">CV / PDF</a>
       </div>
     </section>
 
@@ -156,8 +164,8 @@
 
   <footer data-foot="" style="display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:0 2px; font:400 11.5px/1.6 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)">
     <span style="display:flex; align-items:center; gap:14px; flex-wrap:wrap">
-      <!-- The ♥ sits between two keys, not inside one: applyLang() writes
-           textContent, which would delete a child span. -->
+      <!-- ♥ sits outside the translated span: applyLang() writes textContent,
+           which would delete a child element. -->
       <span data-colophon="">
         <span data-i18n="foot.colophon">Set in IBM Plex · Made with</span>
         <span role="img" aria-label="love" style="color:var(--accent)">♥</span>
@@ -176,8 +184,8 @@
         <span style="font:400 11.5px/1 'IBM Plex Mono',ui-monospace,monospace; color:var(--fg); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">huy-bui-cv.pdf</span>
       </div>
       <div style="display:flex; align-items:center; gap:8px">
-        <a data-cv-download="" href="/assets/huy-bui-cv.pdf" download="huy-bui-cv.pdf" class="hv-bg" style="border:1px solid var(--accent); border-radius:2px; padding:9px 13px; display:flex; align-items:center; gap:9px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--fg); transition:background .3s cubic-bezier(.33,.02,.24,1)"><span data-i18n="cv.download">Download</span><span aria-hidden="true" style="color:var(--accent)">↓</span></a>
-        <button type="button" data-cv-close="" class="hv-border" aria-label="Close" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:34px; height:34px; display:flex; align-items:center; justify-content:center; font:400 15px/1 'IBM Plex Sans',system-ui,sans-serif; color:var(--fg); transition:border-color .3s cubic-bezier(.33,.02,.24,1)"><span aria-hidden="true">✕</span></button>
+        <a data-cv-download="" href="/assets/huy-bui-cv.pdf" download="huy-bui-cv.pdf" class="hv-fill" style="border:1px solid var(--accent); border-radius:2px; padding:9px 13px; display:flex; align-items:center; gap:9px; font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--fg); transition:background .3s cubic-bezier(.33,.02,.24,1)"><span data-i18n="cv.download">Download</span><span aria-hidden="true" style="color:var(--accent)">↓</span></a>
+        <button type="button" data-cv-close="" class="hv-fill" aria-label="Close" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:34px; height:34px; display:flex; align-items:center; justify-content:center; font:400 15px/1 'IBM Plex Sans',system-ui,sans-serif; color:var(--fg); transition:border-color .3s cubic-bezier(.33,.02,.24,1)"><span aria-hidden="true">✕</span></button>
       </div>
     </div>
     <div style="flex:1; min-height:0; background:var(--bg)">
