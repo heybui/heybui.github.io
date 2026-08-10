@@ -49,7 +49,7 @@
       'contact.cv': 'CV / PDF',
       'cv.title': 'Hồ sơ năng lực',
       'cv.download': 'Tải về',
-      'foot.colophon': 'Chữ IBM Plex · Thiết kế và lập trình tại TP. Hồ Chí Minh',
+      'foot.colophon': 'Chữ IBM Plex · Làm với',
       'foot.right': '© 2026'
     }
   };

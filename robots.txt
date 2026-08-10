@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-# Design-canvas source, kept for editing rather than reading.
-Disallow: /design/
 
 Sitemap: https://heybui.github.io/sitemap.xml

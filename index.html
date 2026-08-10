@@ -156,7 +156,12 @@
 
   <footer data-foot="" style="display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:0 2px; font:400 11.5px/1.6 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)">
     <span style="display:flex; align-items:center; gap:14px; flex-wrap:wrap">
-      <span data-colophon="" data-i18n="foot.colophon">Set in IBM Plex · Designed and built in Ho Chi Minh City</span>
+      <!-- The ♥ sits between two keys, not inside one: applyLang() writes
+           textContent, which would delete a child span. -->
+      <span data-colophon="">
+        <span data-i18n="foot.colophon">Set in IBM Plex · Made with</span>
+        <span role="img" aria-label="love" style="color:var(--accent)">♥</span>
+      </span>
     </span>
     <span data-i18n="foot.right">© 2026</span>
   </footer>
