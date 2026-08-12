@@ -694,7 +694,7 @@
           meta.appendChild(p);
           head.append(left, meta);
           const lead = document.createElement('p');
-          lead.style.cssText = "margin:0;max-width:92ch;font:400 14px/1.7 'IBM Plex Sans',system-ui,sans-serif;color:var(--fg);text-wrap:pretty";
+          lead.style.cssText = "margin:0;font:400 14px/1.7 'IBM Plex Sans',system-ui,sans-serif;color:var(--fg);text-wrap:pretty";
           lead.textContent = x.d[L];
           const bl = document.createElement('div');
           bl.style.cssText = 'display:flex;flex-direction:column;overflow:hidden;transition:max-height .36s cubic-bezier(.22,.61,.36,1),opacity .26s ease;opacity:' + (state.expAll ? '1' : '0') + ';max-height:' + (state.expAll ? '600px' : '0px');
@@ -706,7 +706,7 @@
             const ix = document.createElement('span');
             ix.style.cssText = 'width:6px;height:6px;margin-top:9px;background:var(--accent)';
             const tx = document.createElement('span');
-            tx.style.cssText = "max-width:104ch;font:400 13px/1.7 'IBM Plex Sans',system-ui,sans-serif;color:var(--fg);text-wrap:pretty";
+            tx.style.cssText = "font:400 13px/1.7 'IBM Plex Sans',system-ui,sans-serif;color:var(--fg);text-wrap:pretty";
             tx.textContent = b[L];
             li.append(ix, tx);
             bl.appendChild(li);
@@ -835,9 +835,13 @@
       host.innerHTML = '';
       const cnt = root.querySelector('[data-edu-count]');
       if (cnt) cnt.textContent = String(CREDENTIALS.length).padStart(2, '0');
+      // Rows share the panel height instead of leaving a gap at the bottom.
+      // flex:1 0 auto grows them but never squashes a title that wraps.
+      host.style.display = 'flex';
+      host.style.flexDirection = 'column';
       CREDENTIALS.forEach((p, i) => {
         const row = document.createElement('div');
-        row.style.cssText = 'display:grid;grid-template-columns:66px 1fr 58px;gap:16px;align-items:baseline;padding:14px 22px;border-left:2px solid transparent' + (i ? ';border-top:1px solid var(--line)' : '');
+        row.style.cssText = 'flex:1 0 auto;display:grid;grid-template-columns:66px 1fr 58px;gap:16px;align-items:center;padding:14px 22px;border-left:2px solid transparent' + (i ? ';border-top:1px solid var(--line)' : '');
         const d = document.createElement('span');
         d.style.cssText = "font:400 11.5px/1.5 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.02em;color:var(--muted)";
         d.textContent = p.d;
