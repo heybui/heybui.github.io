@@ -44,6 +44,12 @@ h1,h2,h3{margin:0;font-size:inherit;font-weight:inherit}
 .hv-border:hover{border-color:var(--accent) !important}
 .hv-accent:hover{color:var(--accent) !important}
 
+/* added: credential rows backed by a scanned document (site.js sets this
+   attribute) — same left-edge accent used for the current stack row. */
+[data-cert-row]{border-left-color:transparent}
+[data-cert-row]:hover,
+[data-cert-row]:focus-visible{border-left-color:var(--accent) !important; outline:none}
+
 /* added: clickable things get the same soft box as the experience rows —
    background one step darker than the card, plus an accent edge. */
 .hv-fill{transition:background .2s cubic-bezier(.33,.02,.24,1), color .2s cubic-bezier(.33,.02,.24,1), border-color .2s cubic-bezier(.33,.02,.24,1) !important}
@@ -58,18 +64,18 @@ h1,h2,h3{margin:0;font-size:inherit;font-weight:inherit}
 /* site.js regenerates the accent-filled pointer; these are the fallbacks. */
 
 body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23384358' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='11.5' y='11.5' width='1' height='1' fill='%23384358'/%3E%3C/svg%3E") 12 12, crosshair}
-a,button,[data-row],[data-exp-row]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23384358' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='9.5' y='9.5' width='5' height='5' fill='%23c8342b'/%3E%3C/svg%3E") 12 12, pointer}
+a,button,[data-row],[data-exp-row],[data-cert-row]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23384358' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='9.5' y='9.5' width='5' height='5' fill='%23c8342b'/%3E%3C/svg%3E") 12 12, pointer}
 input,textarea,p,h1{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23384358' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='11.5' y='11.5' width='1' height='1' fill='%23384358'/%3E%3C/svg%3E") 12 12, crosshair}
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23c9d2e0' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='11.5' y='11.5' width='1' height='1' fill='%23c9d2e0'/%3E%3C/svg%3E") 12 12, crosshair}
-  :root:not([data-theme="light"]) a,:root:not([data-theme="light"]) button,:root:not([data-theme="light"]) [data-row],:root:not([data-theme="light"]) [data-exp-row]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23c9d2e0' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='9.5' y='9.5' width='5' height='5' fill='%23ff7a6b'/%3E%3C/svg%3E") 12 12, pointer}
+  :root:not([data-theme="light"]) a,:root:not([data-theme="light"]) button,:root:not([data-theme="light"]) [data-row],:root:not([data-theme="light"]) [data-exp-row],:root:not([data-theme="light"]) [data-cert-row]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23c9d2e0' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='9.5' y='9.5' width='5' height='5' fill='%23ff7a6b'/%3E%3C/svg%3E") 12 12, pointer}
 }
 :root[data-theme="dark"] body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23c9d2e0' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='11.5' y='11.5' width='1' height='1' fill='%23c9d2e0'/%3E%3C/svg%3E") 12 12, crosshair}
-:root[data-theme="dark"] a,:root[data-theme="dark"] button,:root[data-theme="dark"] [data-row],:root[data-theme="dark"] [data-exp-row]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23c9d2e0' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='9.5' y='9.5' width='5' height='5' fill='%23ff7a6b'/%3E%3C/svg%3E") 12 12, pointer}
+:root[data-theme="dark"] a,:root[data-theme="dark"] button,:root[data-theme="dark"] [data-row],:root[data-theme="dark"] [data-exp-row],:root[data-theme="dark"] [data-cert-row]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%23c9d2e0' stroke-width='1'%3E%3Cpath d='M12 1.5v7.5M12 15v7.5M1.5 12h7.5M15 12h7.5'/%3E%3C/g%3E%3Crect x='9.5' y='9.5' width='5' height='5' fill='%23ff7a6b'/%3E%3C/svg%3E") 12 12, pointer}
 [data-portrait],[data-portrait] *{cursor:default}
 @media (hover:none),(pointer:coarse){
-  body,a,button,input,textarea,p,h1,[data-row],[data-exp-row],
-  :root[data-theme="dark"] body,:root[data-theme="dark"] a,:root[data-theme="dark"] button,:root[data-theme="dark"] [data-row],:root[data-theme="dark"] [data-exp-row]{cursor:auto !important}
+  body,a,button,input,textarea,p,h1,[data-row],[data-exp-row],[data-cert-row],
+  :root[data-theme="dark"] body,:root[data-theme="dark"] a,:root[data-theme="dark"] button,:root[data-theme="dark"] [data-row],:root[data-theme="dark"] [data-exp-row],:root[data-theme="dark"] [data-cert-row]{cursor:auto !important}
 }
 
 /* --- chrome --------------------------------------------------------------- */
@@ -123,6 +129,7 @@ input,textarea,p,h1{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
   #contact{flex-direction:column !important; align-items:flex-start !important; padding:16px !important; gap:14px !important}
   [data-mail]{font-size:20px !important}
   [data-cv-modal]{padding:10px !important}
+  [data-cert-modal]{padding:10px !important}
 }
 @media (max-width:560px){
   [data-navinner] nav{gap:11px !important; font-size:10.5px !important}

@@ -34,7 +34,6 @@
       'lbl.exp': 'Kinh nghiệm',
       'exp.span': '2015 — 2026',
       'lbl.edu': 'Học vấn & Giải thưởng',
-      'edu.all': 'Chứng chỉ',
       'lbl.contact': 'Liên hệ',
       'contact.cv': 'CV / PDF',
       'cv.title': 'CV',
@@ -101,20 +100,26 @@
     [{en:'AI & Testing',vi:'AI & Testing'}, ['Claude Code','Cursor','Copilot','Jest','Playwright']]
   ];
 
-  /* Education and awards. d: year(s), t: title, m: short tag. */
+  /* Education and awards. d: year(s), t: title, m: short tag.
+     img: scanned document(s) for the hover thumbnail and click-to-view popup —
+     omitted where no scan exists (e.g. the Innovator Award). */
   const CREDENTIALS = [
     { d:'2024', m:{en:'Award',vi:'Giải'},
       t:{en:'Innovator Award — product innovation, CoverGo',
          vi:'Giải Innovator — đổi mới sản phẩm, CoverGo'} },
     { d:'2023', m:{en:'Award',vi:'Giải'},
       t:{en:'Best Dissertation Award — remote-work productivity',
-         vi:'Giải Luận văn xuất sắc — năng suất làm việc từ xa'} },
+         vi:'Giải Luận văn xuất sắc — năng suất làm việc từ xa'},
+      img:['/assets/document/mba-cfvg-best-dissertation.jpg'] },
     { d:'2021—23', m:{en:'Master',vi:'Thạc sĩ'},
       t:{en:'Master of Business Administration — Université Paris 1 Panthéon-Sorbonne',
-         vi:'Thạc sĩ Quản trị Kinh doanh — Université Paris 1 Panthéon-Sorbonne'} },
+         vi:'Thạc sĩ Quản trị Kinh doanh — Université Paris 1 Panthéon-Sorbonne'},
+      img:['/assets/document/mba-paris-1-pantheon-sorbonne.jpg',
+           '/assets/document/mba-iae-paris-sorbonne-business-school.jpg'] },
     { d:'2011—15', m:{en:'Bachelor',vi:'Cử nhân'},
       t:{en:'Bachelor of Engineering, Information Systems — FPT University',
-         vi:'Cử nhân Hệ thống thông tin — Đại học FPT'} }
+         vi:'Cử nhân Hệ thống thông tin — Đại học FPT'},
+      img:['/assets/document/fptu-bachelor-degree.jpg'] }
   ];
 
   const EXP = [
@@ -211,6 +216,7 @@
     expAll: false, expSel: 0, expRows: [], expBullets: [],
     activeNav: null, navStuck: null,
     cvOpener: null,
+    certOpener: null, certImgs: [], certIdx: 0,
     en: {}, lastCursorAccent: null
   };
 
@@ -282,9 +288,22 @@
         b.addEventListener('click', () => app.setFilter(b.getAttribute('data-filter')));
       });
 
-      document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') app.closeCv(); });
+      document.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape') { app.closeCv(); app.closeCert(); }
+        if (root.querySelector('[data-cert-modal]').style.display !== 'none') {
+          if (ev.key === 'ArrowLeft') app.certNav(-1);
+          if (ev.key === 'ArrowRight') app.certNav(1);
+        }
+      });
       root.querySelector('[data-cv-modal]').addEventListener('mousedown', (ev) => {
         if (!ev.target.closest('[data-cv-panel]')) app.closeCv();
+      });
+
+      on('[data-cert-prev]', 'click', () => app.certNav(-1));
+      on('[data-cert-next]', 'click', () => app.certNav(1));
+      on('[data-cert-close]', 'click', () => app.closeCert());
+      root.querySelector('[data-cert-modal]').addEventListener('mousedown', (ev) => {
+        if (!ev.target.closest('[data-cert-panel]')) app.closeCert();
       });
 
       // Repaint if the OS theme flips while we're on 'auto'.
@@ -852,6 +871,22 @@
         m.style.cssText = "font:400 10.5px/1.5 'IBM Plex Mono',ui-monospace,monospace;color:var(--accent);text-align:right";
         m.textContent = p.m[L];
         row.append(d, t, m);
+        // A scanned document backs this entry: hover previews it, click opens
+        // the full-size popup. Rows with no img (e.g. the Innovator Award)
+        // stay plain text.
+        if (p.img && p.img.length) {
+          row.setAttribute('data-cert-row', '');
+          row.addEventListener('mouseenter', () => app.openCertTip(row, p.img[0]));
+          row.addEventListener('mousemove', (e) => app.moveCertTip(e));
+          row.addEventListener('mouseleave', () => app.closeCertTip());
+          row.addEventListener('click', () => app.openCert(p.img, p.t[L], row));
+          row.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); app.openCert(p.img, p.t[L], row); }
+          });
+          row.tabIndex = 0;
+          row.setAttribute('role', 'button');
+          row.setAttribute('aria-label', p.t[L]);
+        }
         host.appendChild(row);
       });
     },
@@ -1015,6 +1050,85 @@
       modal.setAttribute('aria-hidden', 'true');
       if (state.cvOpener && state.cvOpener.focus) state.cvOpener.focus();
       state.cvOpener = null;
+    },
+
+    /* --- credential hover preview & popup ---------------------------------- */
+
+    /* Follows the cursor near the row that's being hovered, offset so it
+       never sits directly under the pointer. Touch devices have no hover, so
+       this simply never fires there — click still opens the full popup. */
+    openCertTip(row, src) {
+      const tip = root.querySelector('[data-cert-tip]');
+      const img = tip.querySelector('[data-cert-tip-img]');
+      if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+      tip.style.display = 'block';
+      app._positionCertTip(row.getBoundingClientRect());
+    },
+
+    moveCertTip(e) {
+      const tip = root.querySelector('[data-cert-tip]');
+      if (tip.style.display === 'none') return;
+      app._positionCertTip(null, e);
+    },
+
+    _positionCertTip(rect, e) {
+      const tip = root.querySelector('[data-cert-tip]');
+      const tw = 178, th = 128; // tooltip box, incl. padding
+      let x, y;
+      if (e) { x = e.clientX + 18; y = e.clientY + 18; }
+      else { x = rect.right - tw; y = rect.bottom + 8; }
+      x = Math.min(Math.max(8, x), window.innerWidth - tw - 8);
+      y = Math.min(Math.max(8, y), window.innerHeight - th - 8);
+      tip.style.left = x + 'px';
+      tip.style.top = y + 'px';
+    },
+
+    closeCertTip() {
+      const tip = root.querySelector('[data-cert-tip]');
+      tip.style.display = 'none';
+    },
+
+    openCert(imgs, title, opener) {
+      app.closeCertTip();
+      state.certImgs = imgs;
+      state.certIdx = 0;
+      state.certOpener = opener || null;
+      const modal = root.querySelector('[data-cert-modal]');
+      modal.querySelector('[data-cert-title]').textContent = title;
+      app.renderCertFrame();
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      const close = modal.querySelector('[data-cert-close]');
+      if (close) close.focus();
+    },
+
+    renderCertFrame() {
+      const modal = root.querySelector('[data-cert-modal]');
+      const frame = modal.querySelector('[data-cert-frame]');
+      const src = state.certImgs[state.certIdx];
+      if (frame.getAttribute('src') !== src) frame.setAttribute('src', src);
+      const multi = state.certImgs.length > 1;
+      modal.querySelector('[data-cert-prev]').style.display = multi ? '' : 'none';
+      modal.querySelector('[data-cert-next]').style.display = multi ? '' : 'none';
+      modal.querySelector('[data-cert-count]').textContent = multi
+        ? (state.certIdx + 1) + ' / ' + state.certImgs.length
+        : '';
+    },
+
+    certNav(delta) {
+      const n = state.certImgs.length;
+      if (n < 2) return;
+      state.certIdx = (state.certIdx + delta + n) % n;
+      app.renderCertFrame();
+    },
+
+    closeCert() {
+      const modal = root.querySelector('[data-cert-modal]');
+      if (modal.style.display === 'none') return;
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      if (state.certOpener && state.certOpener.focus) state.certOpener.focus();
+      state.certOpener = null;
     }
   };
 

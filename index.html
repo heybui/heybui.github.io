@@ -90,7 +90,6 @@ try {
           <h2 id="h-edu" style="font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--muted)" data-i18n="lbl.edu">Education &amp; Awards</h2>
           <span data-edu-count="" style="font:400 11.5px/1 'IBM Plex Mono',ui-monospace,monospace; color:var(--accent)">04</span>
         </div>
-        <a href="https://drive.google.com/drive/folders/1SgObAcAau8a_iQu7QBE_W_jUMXvArZZJ" target="_blank" rel="noopener" class="hv-fill" style="padding:6px 8px; margin:-6px -8px; border-radius:2px; display:flex; align-items:center; gap:8px; font:500 10.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)"><span data-i18n="edu.all">Certificates</span><span aria-hidden="true" style="color:var(--accent)">↗</span></a>
       </div>
       <div data-edu-list="" style="flex:1; min-height:0; overflow-y:auto"></div>
     </section>
@@ -190,6 +189,30 @@ try {
     </div>
     <div style="flex:1; min-height:0; background:var(--bg)">
       <iframe data-cv-frame="" title="CV preview" style="width:100%; height:100%; border:0; display:block"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Hover preview for credential rows that have a scanned document. site.js
+     positions this next to the cursor and swaps the image; it stays hidden
+     (and untouched) for rows with no [data-cert-row]. -->
+<div data-cert-tip="" aria-hidden="true" style="position:fixed; z-index:90; display:none; pointer-events:none; padding:5px; background:var(--surface); border:1px solid var(--line); border-radius:2px; box-shadow:var(--shadow)">
+  <img data-cert-tip-img="" alt="" style="display:block; width:168px; height:118px; object-fit:cover; border-radius:1px; background:var(--bg)">
+</div>
+
+<div data-cert-modal="" role="dialog" aria-modal="true" aria-labelledby="h-cert" aria-hidden="true" style="position:fixed; inset:0; z-index:85; display:none; align-items:center; justify-content:center; padding:32px; background:oklch(0.18 0.03 253 / 0.55); backdrop-filter:blur(3px)">
+  <div data-cert-panel="" style="width:min(780px,94vw); height:min(88vh,880px); display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--line); border-radius:3px; box-shadow:var(--shadow); overflow:hidden">
+    <div style="flex:none; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 18px; border-bottom:1px solid var(--line)">
+      <h2 id="h-cert" data-cert-title="" style="font:500 11.5px/1 'IBM Plex Sans',system-ui,sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0"></h2>
+      <div style="flex:none; display:flex; align-items:center; gap:6px">
+        <span data-cert-count="" style="font:400 11px/1 'IBM Plex Mono',ui-monospace,monospace; color:var(--muted); margin-right:4px"></span>
+        <button type="button" data-cert-prev="" aria-label="Previous image" class="hv-fill" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:34px; height:34px; display:flex; align-items:center; justify-content:center; font:400 15px/1 'IBM Plex Sans',system-ui,sans-serif; color:var(--fg); transition:border-color .3s cubic-bezier(.33,.02,.24,1)"><span aria-hidden="true">‹</span></button>
+        <button type="button" data-cert-next="" aria-label="Next image" class="hv-fill" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:34px; height:34px; display:flex; align-items:center; justify-content:center; font:400 15px/1 'IBM Plex Sans',system-ui,sans-serif; color:var(--fg); transition:border-color .3s cubic-bezier(.33,.02,.24,1)"><span aria-hidden="true">›</span></button>
+        <button type="button" data-cert-close="" aria-label="Close" class="hv-fill" style="appearance:none; border:1px solid var(--line); border-radius:2px; background:transparent; width:34px; height:34px; display:flex; align-items:center; justify-content:center; font:400 15px/1 'IBM Plex Sans',system-ui,sans-serif; color:var(--fg); transition:border-color .3s cubic-bezier(.33,.02,.24,1)"><span aria-hidden="true">✕</span></button>
+      </div>
+    </div>
+    <div style="flex:1; min-height:0; background:var(--bg); display:flex; align-items:center; justify-content:center; overflow:auto">
+      <img data-cert-frame="" alt="" style="max-width:100%; max-height:100%; display:block">
     </div>
   </div>
 </div>
