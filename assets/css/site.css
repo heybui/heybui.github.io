@@ -50,6 +50,10 @@ h1,h2,h3{margin:0;font-size:inherit;font-weight:inherit}
 [data-cert-row]:hover,
 [data-cert-row]:focus-visible{border-left-color:var(--accent) !important; outline:none}
 
+/* added: project preview panel before a screenshot is swapped in (or for a
+   project with none) — the same diagonal placeholder it always had. */
+[data-d-media].is-empty{background-image:repeating-linear-gradient(135deg, var(--line) 0 1px, transparent 1px 7px); opacity:.75}
+
 /* added: clickable things get the same soft box as the experience rows —
    background one step darker than the card, plus an accent edge. */
 .hv-fill{transition:background .2s cubic-bezier(.33,.02,.24,1), color .2s cubic-bezier(.33,.02,.24,1), border-color .2s cubic-bezier(.33,.02,.24,1) !important}

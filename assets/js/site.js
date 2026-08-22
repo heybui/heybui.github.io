@@ -22,7 +22,7 @@
   const DICT = {
     en: {},
     vi: {
-      'site.kicker': 'Portfolio / 2026',
+      'site.kicker': 'Kỹ sư phần mềm Cấp cao / Trưởng nhóm',
       'lbl.profile': 'Giới thiệu',
       'hero.role': 'Kỹ sư phần mềm cấp cao · Trưởng nhóm',
       'hero.loc': 'Bình Thạnh, TP. Hồ Chí Minh — UTC+7',
@@ -38,7 +38,7 @@
       'contact.cv': 'CV / PDF',
       'cv.title': 'CV',
       'cv.download': 'Tải về',
-      'foot.colophon': 'Chữ IBM Plex · Làm bằng',
+      'foot.colophon': 'Chữ IBM Plex · Làm với',
       'foot.right': '© 2026'
     }
   };
@@ -57,37 +57,51 @@
       stack:'WordPress · Next.js · NestJS · K8s',
       d:{ en:'CMS and online registration for the UN Convention against Cybercrime signing ceremony in Hanoi. Built with a government agency, from requirements through to on-premise deployment.',
           vi:'CMS và cổng đăng ký trực tuyến cho lễ ký Công ước Liên Hợp Quốc về tội phạm mạng tại Hà Nội. Phối hợp cùng cơ quan nhà nước từ lúc lấy yêu cầu đến khi triển khai on-premise.' },
-      m:[['1,500+',{en:'Registrants',vi:'Đại biểu'}],['4 mo',{en:'Delivery',vi:'Thời gian'}]] },
+      m:[['1,500+',{en:'Registrants',vi:'Đại biểu'}],['4 mo',{en:'Delivery',vi:'Thời gian'}]],
+      img:['/assets/projects/hanoi-convention/header.png',
+           '/assets/projects/hanoi-convention/portal.png',
+           '/assets/projects/hanoi-convention/full-page.png'] },
 
-    { y:'2025', cat:'platform', n:'Kasha Booking API', url:'https://kasha.io',
+    { y:'2025', cat:'platform', n:'Kasha Booking', url:'https://kasha.io',
       stack:'NestJS · gRPC · RabbitMQ · Postgres',
       d:{ en:'Booking module backend, architected from inception through design and implementation to MVP launch, with gRPC and RabbitMQ carrying traffic between services.',
           vi:'Backend cho module đặt chỗ: tự dựng kiến trúc từ đầu, làm tới khi ra MVP. Các service giao tiếp với nhau qua gRPC và RabbitMQ.' },
-      m:[['MVP',{en:'Shipped',vi:'Đã ra mắt'}],['10 mo',{en:'Engagement',vi:'Thời gian'}]] },
+      m:[['MVP',{en:'Shipped',vi:'Đã ra mắt'}],['10 mo',{en:'Engagement',vi:'Thời gian'}]],
+      img:['/assets/projects/kasha/booking.jpg'] },
 
     { y:'2024', cat:'platform', n:'Product Builder', url:'https://covergo.com',
       stack:'Vue 3 · NestJS · PostgreSQL · Keycloak',
       d:{ en:'Low-code builder that lets insurers configure health, life, property and casualty products with minimal code — the core of the distribution platform.',
           vi:'Builder low-code giúp công ty bảo hiểm tự cấu hình sản phẩm sức khoẻ, nhân thọ, tài sản và trách nhiệm mà gần như không cần viết code — phần cốt lõi của nền tảng phân phối.' },
-      m:[['1 wk',{en:'Time to market',vi:'Thời gian ra mắt'}],['4',{en:'Insurance lines',vi:'Dòng sản phẩm'}]] },
+      m:[['1 wk',{en:'Time to market',vi:'Thời gian ra mắt'}],['4',{en:'Insurance lines',vi:'Dòng sản phẩm'}]],
+      img:['/assets/projects/insurance-product-builder/full-page.png'] },
 
     { y:'2024', cat:'product', n:'Breezing.In', url:'https://breezing.in',
       stack:'Nuxt 3 · NestJS · MongoDB · AWS',
       d:{ en:'All-in-one event and booking platform, built as founding engineer from MVP through launch. Its offline check-in ran Saigon Summit 2024 with Tech in Asia.',
           vi:'Nền tảng quản lý sự kiện và đặt chỗ all-in-one, xây từ MVP tới lúc ra mắt với vai trò founding engineer. Tính năng check-in offline được dùng cho Saigon Summit 2024 cùng Tech in Asia.' },
-      m:[['1,000+',{en:'Users',vi:'Người dùng'}],['3 mo',{en:'To launch',vi:'Đến khi ra mắt'}]] },
+      m:[['1,000+',{en:'Users',vi:'Người dùng'}],['3 mo',{en:'To launch',vi:'Đến khi ra mắt'}]],
+      img:['/assets/projects/breezing/header.png',
+           '/assets/projects/breezing/portal-1.png',
+           '/assets/projects/breezing/portal-2.png',
+           '/assets/projects/breezing/breezing-tia-2024.webp',
+           '/assets/projects/breezing/ads-1.jpg',
+           '/assets/projects/breezing/ads-2.jpg'] },
 
     { y:'2023', cat:'product', n:'Business Connect', url:'https://nic.gov.vn',
       stack:'Nuxt 3 · NestJS · MongoDB · AWS',
       d:{ en:'Business matchmaking platform for Vietnam International Innovation Expo 2023, owned end to end with a team of seven.',
           vi:'Nền tảng kết nối doanh nghiệp cho Triển lãm Quốc tế Đổi mới sáng tạo Việt Nam 2023. Phụ trách trọn gói cùng đội bảy người.' },
-      m:[['15,000+',{en:'Expo visitors',vi:'Khách tham dự'}],['7',{en:'Engineers',vi:'Kỹ sư'}]] },
+      m:[['15,000+',{en:'Expo visitors',vi:'Khách tham dự'}],['7',{en:'Engineers',vi:'Kỹ sư'}]],
+      img:['/assets/projects/nic-viie-2023/nic-2023.webp',
+           '/assets/projects/nic-viie-2023/full-page.jpg'] },
 
     { y:'2019', cat:'consulting', n:'Dental AI Imaging', url:'',
       stack:'PHP · Vue.js · Laravel · AWS Serverless',
       d:{ en:'AI-powered imaging tool and a microservices dental platform helping clinics diagnose more accurately — architecture, pre-sales, and ten developers across two engagements.',
           vi:'Công cụ xử lý ảnh bằng AI và nền tảng nha khoa dựng theo microservices, giúp phòng khám chẩn đoán chính xác hơn. Đảm nhận kiến trúc, pre-sales và điều phối mười lập trình viên qua hai dự án.' },
-      m:[['$1M',{en:'Contract won',vi:'Hợp đồng'}],['10',{en:'Developers',vi:'Lập trình viên'}]] }
+      m:[['$1M',{en:'Contract won',vi:'Hợp đồng'}],['10',{en:'Developers',vi:'Lập trình viên'}]],
+      img:['/assets/projects/dental-ai-imaging/demo.png'] }
   ];
 
   const STACK = [
@@ -102,24 +116,25 @@
 
   /* Education and awards. d: year(s), t: title, m: short tag.
      img: scanned document(s) for the hover thumbnail and click-to-view popup —
-     omitted where no scan exists (e.g. the Innovator Award). */
+     omitted where no scan exists. */
   const CREDENTIALS = [
     { d:'2024', m:{en:'Award',vi:'Giải'},
       t:{en:'Innovator Award — product innovation, CoverGo',
-         vi:'Giải Innovator — đổi mới sản phẩm, CoverGo'} },
+         vi:'Giải Innovator — đổi mới sản phẩm, CoverGo'},
+      img:['/assets/certs/covergo-innovator-award.jpg'] },
     { d:'2023', m:{en:'Award',vi:'Giải'},
       t:{en:'Best Dissertation Award — remote-work productivity',
          vi:'Giải Luận văn xuất sắc — năng suất làm việc từ xa'},
-      img:['/assets/document/mba-cfvg-best-dissertation.jpg'] },
+      img:['/assets/certs/mba-cfvg-best-dissertation.jpg'] },
     { d:'2021—23', m:{en:'Master',vi:'Thạc sĩ'},
       t:{en:'Master of Business Administration — Université Paris 1 Panthéon-Sorbonne',
          vi:'Thạc sĩ Quản trị Kinh doanh — Université Paris 1 Panthéon-Sorbonne'},
-      img:['/assets/document/mba-paris-1-pantheon-sorbonne.jpg',
-           '/assets/document/mba-iae-paris-sorbonne-business-school.jpg'] },
+      img:['/assets/certs/mba-paris-1-pantheon-sorbonne.jpg',
+           '/assets/certs/mba-iae-paris-sorbonne-business-school.jpg'] },
     { d:'2011—15', m:{en:'Bachelor',vi:'Cử nhân'},
       t:{en:'Bachelor of Engineering, Information Systems — FPT University',
          vi:'Cử nhân Hệ thống thông tin — Đại học FPT'},
-      img:['/assets/document/fptu-bachelor-degree.jpg'] }
+      img:['/assets/certs/fptu-bachelor-degree.jpg'] }
   ];
 
   const EXP = [
@@ -519,6 +534,7 @@
       root.querySelector('[data-d-year]').textContent = p.y;
       root.querySelector('[data-d-desc]').textContent = p.d[L];
       root.querySelector('[data-d-stack]').textContent = p.stack;
+      app.renderMedia(p);
 
       // Only projects with a public URL get the link button.
       const link = root.querySelector('[data-d-link]');
@@ -541,6 +557,47 @@
         c.append(a, b);
         mh.appendChild(c);
       });
+    },
+
+    /* Swaps the diagonal placeholder for a real screenshot when the project
+       has one. Click opens the same image-viewer popup built for
+       credentials — it's generic (imgs + title + opener), not cert-specific. */
+    renderMedia(p) {
+      const media = root.querySelector('[data-d-media]');
+      const img = media.querySelector('[data-d-media-img]');
+      const hint = media.querySelector('[data-d-media-hint]');
+      if (p.img && p.img.length) {
+        if (img.getAttribute('src') !== p.img[0]) img.setAttribute('src', p.img[0]);
+        img.alt = p.n;
+        img.style.display = 'block';
+        media.classList.remove('is-empty');
+        media.classList.add('hv-border');
+        media.style.cursor = 'pointer';
+        media.tabIndex = 0;
+        media.setAttribute('role', 'button');
+        media.setAttribute('aria-label', p.n);
+        hint.textContent = '⤢';
+        hint.style.background = 'oklch(0.18 0.03 253 / 0.55)';
+        hint.style.color = '#fff';
+        media.onclick = () => app.openCert(p.img, p.n, media);
+        media.onkeydown = (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); app.openCert(p.img, p.n, media); }
+        };
+      } else {
+        img.style.display = 'none';
+        img.removeAttribute('src');
+        media.classList.add('is-empty');
+        media.classList.remove('hv-border');
+        media.style.cursor = '';
+        media.tabIndex = -1;
+        media.removeAttribute('role');
+        media.removeAttribute('aria-label');
+        hint.textContent = 'screenshot / demo loop';
+        hint.style.background = 'transparent';
+        hint.style.color = 'var(--muted)';
+        media.onclick = null;
+        media.onkeydown = null;
+      }
     },
 
     paintFilters(cat) {

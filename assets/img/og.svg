@@ -12,22 +12,30 @@
   <rect x="72" y="72" width="1056" height="486" rx="4" fill="#ffffff" stroke="#d5dade" stroke-width="1"/>
   <line x1="72" y1="145" x2="1128" y2="145" stroke="#d5dade" stroke-width="1"/>
 
-  <text x="120" y="113" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="21" font-weight="500" letter-spacing="3.8" fill="#14202d">HB</text>
-  <text x="153" y="113" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="21" font-weight="500" fill="#cc3430">.</text>
-  <text x="193" y="113" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="21" font-weight="500" letter-spacing="3.8" fill="#6f7983">PORTFOLIO / 2026</text>
+  <text x="120" y="113" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="19" font-weight="500" letter-spacing="3" fill="#14202d">HUY BUI</text>
+  <text x="238" y="113" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="19" font-weight="500" fill="#cc3430">.</text>
+  <text x="272" y="113" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="19" font-weight="500" letter-spacing="3" fill="#6f7983">SENIOR / LEAD SOFTWARE ENGINEER</text>
 
   <g stroke="#14202d" stroke-width="2" stroke-linecap="square">
     <path d="M1043 96v15M1043 131v15M1018 121h15M1053 121h15"/>
   </g>
   <rect x="1035" y="113" width="16" height="16" fill="#cc3430"/>
 
-  <text x="120" y="288" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="88" font-weight="700" letter-spacing="-2.6" fill="#14202d">Huy Bui</text>
-  <text x="120" y="346" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="29" font-weight="400" fill="#6f7983">Senior software engineer · Squad lead — Ho Chi Minh City</text>
+  <line x1="784" y1="145" x2="784" y2="558" stroke="#d5dade" stroke-width="1"/>
 
-  <line x1="120" y1="402" x2="1080" y2="402" stroke="#d5dade" stroke-width="1"/>
+  <text x="120" y="278" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="80" font-weight="700" letter-spacing="-2.4" fill="#14202d">Huy Bui</text>
+  <text x="120" y="326" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="24" font-weight="400" fill="#6f7983">Senior software engineer · Squad lead</text>
+  <text x="120" y="356" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="24" font-weight="400" fill="#6f7983">Ho Chi Minh City</text>
 
-  <text x="120" y="450" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="24" font-weight="400" fill="#14202d">Ten years building web platforms end to end — across e-commerce,</text>
-  <text x="120" y="486" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="24" font-weight="400" fill="#14202d">healthcare and insurance. Lately: low-code, workflows, AI in the loop.</text>
+  <line x1="120" y1="402" x2="784" y2="402" stroke="#d5dade" stroke-width="1"/>
 
-  <text x="120" y="528" font-family="'IBM Plex Mono',Menlo,monospace" font-size="19" font-weight="400" letter-spacing="1.2" fill="#6f7983">heybui.github.io</text>
+  <text x="120" y="446" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="22" font-weight="400" fill="#14202d">Ten years building web platforms end to end —</text>
+  <text x="120" y="478" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="22" font-weight="400" fill="#14202d">across e-commerce, healthcare and insurance.</text>
+  <text x="120" y="510" font-family="'IBM Plex Sans',Helvetica,Arial,sans-serif" font-size="22" font-weight="400" fill="#14202d">Lately: low-code, workflows, AI in the loop.</text>
+
+  <rect x="852" y="196" width="220" height="220" rx="2" fill="#f3f6f8" stroke="#d5dade" stroke-width="1"/>
+  <image x="853" y="197" width="218" height="218" href="profile.png" preserveAspectRatio="xMidYMid slice"/>
+  <rect x="852" y="196" width="220" height="220" rx="2" fill="none" stroke="#d5dade" stroke-width="1"/>
+
+  <text x="852" y="450" font-family="'IBM Plex Mono',Menlo,monospace" font-size="17" font-weight="400" letter-spacing="1" fill="#6f7983">heybui.github.io</text>
 </svg>

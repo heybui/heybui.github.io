@@ -1,0 +1,53 @@
+# Huy Bui
+
+> Senior software engineer and squad lead based in Ho Chi Minh City, Vietnam. Ten years building web platforms end to end across e-commerce, healthcare and insurance.
+
+This site is a single-page portfolio. All content below is also on the live page at https://heybui.github.io/ — this file is a plain-text summary for language models and other automated readers.
+
+## Profile
+
+- Name: Huy Bui
+- Role: Senior Software Engineer / Squad Lead
+- Location: Binh Thanh, Ho Chi Minh City, Vietnam — UTC+7
+- CV (PDF): https://heybui.github.io/assets/certs/huy-bui-cv.pdf
+- GitHub: https://github.com/heybui
+- LinkedIn: https://linkedin.com/in/heybui
+
+## Current role
+
+Senior Software Engineer / Squad Lead at CoverGo (insurance, 2024—now). Leads and builds the low-code product builder that lets insurers configure health, life, property and casualty products. Cut time-to-market for a new insurance product from a month to a week. Delivered data anonymisation and deletion modules for regulatory compliance. Designed a workflow wrapper around Temporal for composable customer journeys. Won the 2024 Innovator Award at CoverGo.
+
+## Experience history
+
+- 2024—now: Senior Software Engineer / Squad Lead, CoverGo (Insurance) — Vue 3, NestJS, PostgreSQL, AWS, Temporal, Keycloak
+- 2023: Technical Lead, National Innovation Center (Government) — Nuxt 3, NestJS, MongoDB, WordPress, AWS, Firebase
+- 2021—2023: Senior Software Engineer, Pangara AB (Platform/CMS) — Vue.js, Node.js, Directus, Laravel, MySQL
+- 2020—2021: Team Leader, ICD Vietnam (E-commerce) — Node.js, TypeScript, Express, Angular, Google App Engine
+- 2018—2020: Solution Architect & Pre-sale, FPT Software (Healthcare) — PHP CodeIgniter, Vue.js, Laravel, Node.js, AWS Serverless, Swift
+- 2016—2018: Senior Software Engineer, NTT DATA (Healthcare) — Java, Spring MVC, Oracle, Terasoluna
+- 2015: Software Programmer, FPT Information System (Enterprise/SAP) — SAP ABAP
+
+## Selected projects
+
+- Hanoi Convention 2025 (https://hanoiconvention.org): CMS and online registration for the UN Convention against Cybercrime signing ceremony in Hanoi. WordPress, Next.js, NestJS, K8s.
+- Kasha Booking (https://kasha.io): Booking module backend, architected from inception to MVP launch. NestJS, gRPC, RabbitMQ, Postgres.
+- Product Builder (https://covergo.com): Low-code builder for insurers to configure products with minimal code. Vue 3, NestJS, PostgreSQL, Keycloak.
+- Breezing.In (https://breezing.in): All-in-one event and booking platform, built as founding engineer. Nuxt 3, NestJS, MongoDB, AWS.
+- Business Connect (https://nic.gov.vn): Business matchmaking platform for Vietnam International Innovation Expo 2023. Nuxt 3, NestJS, MongoDB, AWS.
+- Dental AI Imaging: AI-powered imaging tool and microservices dental platform. PHP, Vue.js, Laravel, AWS Serverless.
+
+## Stack
+
+Languages: TypeScript, JavaScript, PHP, Java. Frontend: Vue 3, Nuxt, React, Next.js, TailwindCSS, Vuetify, PrimeVue. Backend: Node.js, NestJS, Express, Laravel, Spring MVC. Data: PostgreSQL, MySQL, MongoDB, Redis, Oracle. Cloud & DevOps: AWS, Docker, Kubernetes, GitHub Actions, Grafana, OpenTelemetry. Integration: REST, GraphQL, gRPC, RabbitMQ, Temporal. AI & Testing: Claude Code, Cursor, Copilot, Jest, Playwright.
+
+## Education & awards
+
+- 2024: Innovator Award — product innovation, CoverGo
+- 2023: Best Dissertation Award — remote-work productivity
+- 2021—23: Master of Business Administration — Université Paris 1 Panthéon-Sorbonne
+- 2011—15: Bachelor of Engineering, Information Systems — FPT University
+
+## Notes for automated readers
+
+- The page is available in English and Vietnamese (client-side toggle); this file describes the English content.
+- Full site source is a static HTML/CSS/JS page with no server-side rendering — https://heybui.github.io/ serves the complete content directly.
