@@ -53,7 +53,7 @@
 
   /* cat: 'product' | 'platform' | 'consulting'   ·   url: '' hides the link button */
   const PROJECTS = [
-    { y:'2025', cat:'consulting', n:'Hanoi Convention 2025', url:'https://hanoiconvention.org',
+    { y:'2025', cat:'consulting', n:'Government Event Website & Registration', url:'https://hanoiconvention.org',
       stack:'WordPress · Next.js · NestJS · K8s',
       d:{ en:'CMS and online registration for the UN Convention against Cybercrime signing ceremony in Hanoi. Built with a government agency, from requirements through to on-premise deployment.',
           vi:'CMS và cổng đăng ký trực tuyến cho lễ ký Công ước Liên Hợp Quốc về tội phạm mạng tại Hà Nội. Phối hợp cùng cơ quan nhà nước từ lúc lấy yêu cầu đến khi triển khai on-premise.' },
@@ -62,21 +62,21 @@
            '/assets/projects/hanoi-convention/portal.png',
            '/assets/projects/hanoi-convention/full-page.png'] },
 
-    { y:'2025', cat:'platform', n:'Kasha Booking', url:'https://kasha.io',
+    { y:'2025', cat:'platform', n:'Booking & Reservation Module', url:'https://kasha.io',
       stack:'NestJS · gRPC · RabbitMQ · Postgres',
       d:{ en:'Booking module backend, architected from inception through design and implementation to MVP launch, with gRPC and RabbitMQ carrying traffic between services.',
           vi:'Backend cho module đặt chỗ: tự dựng kiến trúc từ đầu, làm tới khi ra MVP. Các service giao tiếp với nhau qua gRPC và RabbitMQ.' },
       m:[['MVP',{en:'Shipped',vi:'Đã ra mắt'}],['10 mo',{en:'Engagement',vi:'Thời gian'}]],
       img:['/assets/projects/kasha/booking.jpg'] },
 
-    { y:'2024', cat:'platform', n:'Product Builder', url:'https://covergo.com',
+    { y:'2024', cat:'platform', n:'Insurance Product Builder', url:'https://covergo.com',
       stack:'Vue 3 · NestJS · PostgreSQL · Keycloak',
       d:{ en:'Low-code builder that lets insurers configure health, life, property and casualty products with minimal code — the core of the distribution platform.',
           vi:'Builder low-code giúp công ty bảo hiểm tự cấu hình sản phẩm sức khoẻ, nhân thọ, tài sản và trách nhiệm mà gần như không cần viết code — phần cốt lõi của nền tảng phân phối.' },
       m:[['1 wk',{en:'Time to market',vi:'Thời gian ra mắt'}],['4',{en:'Insurance lines',vi:'Dòng sản phẩm'}]],
       img:['/assets/projects/insurance-product-builder/full-page.png'] },
 
-    { y:'2024', cat:'product', n:'Breezing.In', url:'https://breezing.in',
+    { y:'2024', cat:'product', n:'Breezing.in - Event Management Platform', url:'https://breezing.in',
       stack:'Nuxt 3 · NestJS · MongoDB · AWS',
       d:{ en:'All-in-one event and booking platform, built as founding engineer from MVP through launch. Its offline check-in ran Saigon Summit 2024 with Tech in Asia.',
           vi:'Nền tảng quản lý sự kiện và đặt chỗ all-in-one, xây từ MVP tới lúc ra mắt với vai trò founding engineer. Tính năng check-in offline được dùng cho Saigon Summit 2024 cùng Tech in Asia.' },
@@ -88,7 +88,7 @@
            '/assets/projects/breezing/ads-1.jpg',
            '/assets/projects/breezing/ads-2.jpg'] },
 
-    { y:'2023', cat:'product', n:'Business Connect', url:'https://nic.gov.vn',
+    { y:'2023', cat:'product', n:'Business Connect - Matchmaking Platform', url:'https://nic.gov.vn',
       stack:'Nuxt 3 · NestJS · MongoDB · AWS',
       d:{ en:'Business matchmaking platform for Vietnam International Innovation Expo 2023, owned end to end with a team of seven.',
           vi:'Nền tảng kết nối doanh nghiệp cho Triển lãm Quốc tế Đổi mới sáng tạo Việt Nam 2023. Phụ trách trọn gói cùng đội bảy người.' },
@@ -96,7 +96,7 @@
       img:['/assets/projects/nic-viie-2023/nic-2023.webp',
            '/assets/projects/nic-viie-2023/full-page.jpg'] },
 
-    { y:'2019', cat:'consulting', n:'Dental AI Imaging', url:'',
+    { y:'2019', cat:'consulting', n:'Dental AI Imaging Project', url:'',
       stack:'PHP · Vue.js · Laravel · AWS Serverless',
       d:{ en:'AI-powered imaging tool and a microservices dental platform helping clinics diagnose more accurately — architecture, pre-sales, and ten developers across two engagements.',
           vi:'Công cụ xử lý ảnh bằng AI và nền tảng nha khoa dựng theo microservices, giúp phòng khám chẩn đoán chính xác hơn. Đảm nhận kiến trúc, pre-sales và điều phối mười lập trình viên qua hai dự án.' },
@@ -206,7 +206,7 @@
             vi:'Dẫn dắt việc chuyển từ MS SQL sang Oracle, giảm thời gian truy vấn từ mười giây xuống một giây.' },
           { en:'Mentored junior developers and ran knowledge-transfer sessions for the team.',
             vi:'Kèm cặp lập trình viên mới và tổ chức các buổi chuyển giao kiến thức cho đội.' } ],
-      m:[['1 s',{en:'Query time',vi:'Thời gian truy vấn'}]] },
+      m:[['MS SQL → Oracle',{en:'DB migration',vi:'Chuyển đổi CSDL'}]] },
 
     { p:'2015', pn:{en:'',vi:''}, r:{en:'Software Programmer',vi:'Lập trình viên'}, c:'FPT Information System',
       loc:{en:'Enterprise / SAP',vi:'Doanh nghiệp / SAP'}, s:'SAP ABAP',
